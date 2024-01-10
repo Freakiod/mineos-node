@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-sh /usr/games/minecraft/update_bedrock_version_cron.sh
+sh /usr/games/minecraft/update_bedrock_version.sh
 
 if [[ ! -f /root/password ]]; then
   if [ -z "$USER_PASSWORD" ] || [ "$USER_PASSWORD" = "random_see_log" ]; then
