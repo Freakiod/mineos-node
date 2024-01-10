@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
   curl \
   rlwrap \
   unzip \
+  vim \
   openjdk-17-jre-headless \
   openjdk-8-jre-headless \
   ca-certificates-java \
@@ -25,7 +26,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
 #download mineos from github
 RUN mkdir /usr/games/minecraft \
   && cd /usr/games/minecraft \
-  && git clone --depth=1 https://github.com/hexparrot/mineos-node.git . \
+  && git clone --depth=1 https://github.com/joshua-klassen/mineos-node.git . \
   && cp mineos.conf /etc/mineos.conf \
   && chmod +x webui.js mineos_console.js service.js
 
@@ -43,8 +44,12 @@ RUN cd /usr/games/minecraft \
 RUN cp /usr/games/minecraft/init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
 
+COPY update_bedrock_version.sh /update_bedrock_version.sh
+COPY mineos_cron.sh /etc/cron.d/mineos_cron.sh
+
 #entrypoint allowing for setting of mc password
 COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 8443 25565-25570

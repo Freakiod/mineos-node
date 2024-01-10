@@ -1,5 +1,5 @@
 REGISTRY_NAME := 
-REPOSITORY_NAME := hexparrot/
+REPOSITORY_NAME := joshua-klassen/
 IMAGE_NAME := mineos
 TAG := :latest
 

@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eo pipefail
 
+sh /update_bedrock_version_cron.sh
+
 if [[ ! -f /root/password ]]; then
   if [ -z "$USER_PASSWORD" ] || [ "$USER_PASSWORD" = "random_see_log" ]; then
     echo >&2 'USER_PASSWORD not specified, generating random password.'
