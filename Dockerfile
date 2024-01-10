@@ -1,27 +1,4 @@
-FROM ubuntu:focal
-LABEL MAINTAINER='William Dizon <wdchromium@gmail.com>'
-
-#update and accept all prompts
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y \
-  supervisor \
-  rdiff-backup \
-  screen \
-  rsync \
-  git \
-  curl \
-  rlwrap \
-  unzip \
-  vim \
-  openjdk-17-jre-headless \
-  openjdk-8-jre-headless \
-  ca-certificates-java \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-#install node from nodesource following instructions: https://github.com/nodesource/distributions#debinstall
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
-  && apt-get install -y nodejs \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+FROM joshklassen/mineos:0.0.1
 
 #download mineos from github
 RUN mkdir /usr/games/minecraft \
@@ -46,10 +23,13 @@ CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
 
 COPY mineos_cron.sh /etc/cron.d/mineos_cron.sh
 
-#entrypoint allowing for setting of mc password
-ENTRYPOINT ["/usr/games/minecraft/entrypoint.sh"]
-
 EXPOSE 8443 25565-25570
 VOLUME /var/games/minecraft
 
 ENV USER_PASSWORD=random_see_log USER_NAME=mc USER_UID=1000 USE_HTTPS=true SERVER_PORT=8443
+
+RUN chmod 777 /usr/games/minecraft/*.sh
+RUN chmod 777 /etc/cron.d/mineos_cron.sh
+
+#entrypoint allowing for setting of mc password
+ENTRYPOINT ["/usr/games/minecraft/entrypoint.sh"]

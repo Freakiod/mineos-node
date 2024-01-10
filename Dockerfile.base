@@ -1,0 +1,23 @@
+FROM ubuntu:24.04
+
+#update and accept all prompts
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+  supervisor \
+  rdiff-backup \
+  screen \
+  rsync \
+  git \
+  curl \
+  rlwrap \
+  unzip \
+  vim \
+  openjdk-17-jre-headless \
+  openjdk-8-jre-headless \
+  ca-certificates-java \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+#install node from nodesource following instructions: https://github.com/nodesource/distributions#debinstall
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+  && apt-get install -y nodejs \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
