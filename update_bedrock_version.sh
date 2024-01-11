@@ -69,3 +69,7 @@ exports.profile = {
 }
 
 EOM
+
+echo "Done updating"
+
+exit 0

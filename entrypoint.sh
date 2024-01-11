@@ -1,8 +1,6 @@
 #!/bin/bash
 set -eo pipefail
 
-exec /usr/games/minecraft/update_bedrock_version.sh
-
 if [[ ! -f /root/password ]]; then
   if [ -z "$USER_PASSWORD" ] || [ "$USER_PASSWORD" = "random_see_log" ]; then
     echo >&2 'USER_PASSWORD not specified, generating random password.'
@@ -114,5 +112,51 @@ else
     echo "Falling back to https true"
     sed -i 's/use_https = false/use_https = true/' /etc/mineos.conf
 fi
+
+curl -H "Accept-Encoding: identity" -H "Accept-Language: en" -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.33 (KHTML, like Gecko) Chrome/90.0.$RandNum.212 Safari/537.33" -s -o ./version.html https://www.minecraft.net/en-us/download/server/bedrock
+LatestVersion=$(grep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*' ./version.html | sed 's#.*/##')
+
+version_without_extension=$(echo "${LatestVersion%.*}")
+version_number=$(echo "$version_without_extension" | sed 's/.*-//')
+
+cat > "/usr/games/minecraft/profiles.d/bedrock-server.js" <<- EOM
+
+var path = require('path');
+var fs = require('fs-extra');
+var profile = require('./template');
+
+exports.profile = {
+  name: 'Minecraft Bedrock',
+  handler: function (profile_dir, callback) {
+    var p = [];
+
+    try {  // BEGIN PARSING LOGIC
+      var item = new profile();
+
+      item['id'] = '$version_without_extension';
+      item['type'] = 'release';
+      item['group'] = 'bedrock-server';
+      item['webui_desc'] = '$version_number Linux x64 release';
+      item['weight'] = 0;
+      item['filename'] = '$LatestVersion';
+      item['downloaded'] = fs.existsSync(path.join(profile_dir, item.id, item.filename));
+      item['version'] = 0;
+      item['release_version'] = '$version_number';
+      item['url'] = 'https://minecraft.azureedge.net/bin-linux/$LatestVersion';
+      p.push(JSON.parse(JSON.stringify(item)));
+
+    } catch (e) { console.error(e); }
+
+    callback(null, p);
+  }, //end handler
+  postdownload: function (profile_dir, dest_filepath, callback) {
+
+    // perform an async chmod of the unipper extracted bedrock_server binary
+    fs.chmod((profile_dir + '/bedrock_server'), 0755);
+    callback();
+  }
+}
+
+EOM
 
 exec "$@"
