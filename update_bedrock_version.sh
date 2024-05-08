@@ -15,7 +15,7 @@ if [[ $ServerVersions == "" || ! $ServerVersions =~ $LatestVersion ]]; then
     version_without_extension=$(echo "${LatestVersion%.*}")
     mkdir -p /var/games/minecraft/profiles/$version_without_extension
     curl -H "Accept-Encoding: identity" -H "Accept-Language: en" -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.33 (KHTML, like Gecko) Chrome/90.0.$RandNum.212 Safari/537.33" -o "/var/games/minecraft/profiles/$version_without_extension/$LatestVersion" "$DownloadURL$LatestVersion"
-    unzip -qo "/var/games/minecraft/profiles/$version_without_extension/$LatestVersion" -d "/var/games/minecraft/profiles/$version_without_extension/"
+    7z x -y -aoa -o"/var/games/minecraft/profiles/$version_without_extension/" "/var/games/minecraft/profiles/$version_without_extension/$LatestVersion"
 fi
 
 Version_Text=""
