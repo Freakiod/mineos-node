@@ -141,7 +141,7 @@ server.backend = function(base_dir, socket_emitter, user_config) {
 
     function discover() {
       //http://stackoverflow.com/a/24594123/1191579
-      logging.warn("Searching {0} for servers".format(path.join(server_path,p)));
+      logging.warn("Searching {0} for servers".format(server_path));
       return fs.readdirSync(server_path).filter(function(p) {
         try {
           return fs.statSync(path.join(server_path, p)).isDirectory();
