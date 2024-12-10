@@ -633,6 +633,7 @@ server.backend = function(base_dir, socket_emitter, user_config) {
       }
     }
 
+
     self.send_user_list = function() {
       var passwd = require('etc-passwd');
       var users = [];
