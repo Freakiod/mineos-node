@@ -113,4 +113,6 @@ else
     sed -i 's/use_https = false/use_https = true/' /etc/mineos.conf
 fi
 
+chown -R "root:root" "/var/games/minecraft"
+
 exec "$@"
