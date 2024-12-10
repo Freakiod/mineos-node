@@ -136,7 +136,7 @@ server.backend = function(base_dir, socket_emitter, user_config) {
     
   })();
 
-  (function() {
+  self.discover_servers = function() {
     var server_path = path.join(base_dir, mineos.DIRS['servers']);
 
     function discover() {
@@ -186,9 +186,10 @@ server.backend = function(base_dir, socket_emitter, user_config) {
       for (var s in self.servers)
         if (current_servers.indexOf(s) < 0)
           untrack(s);
-
     })
-  })();
+  }
+
+  self.discover_servers();
 
   (function() {
     var fireworm = require('fireworm');
@@ -599,6 +600,7 @@ server.backend = function(base_dir, socket_emitter, user_config) {
 
           break;
         case 'refresh_server_list':
+          self.discover_servers();
           for (var s in self.servers)
             self.front_end.emit('track_server', s);
           break;
