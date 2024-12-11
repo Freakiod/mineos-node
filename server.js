@@ -141,7 +141,6 @@ server.backend = function(base_dir, socket_emitter, user_config) {
 
     function discover() {
       //http://stackoverflow.com/a/24594123/1191579
-      logging.warn("Searching {0} for servers".format(server_path));
       return fs.readdirSync(server_path).filter(function(p) {
         try {
           return fs.statSync(path.join(server_path, p)).isDirectory();
@@ -171,9 +170,7 @@ server.backend = function(base_dir, socket_emitter, user_config) {
     }
 
     var discovered_servers = discover();
-    logging.warn("Found {0} servers".format(discovered_servers));
     for (var i in discovered_servers)
-      logging.warn("Tracking {0} server".format(discovered_servers[i]));
       track(discovered_servers[i]);
 
     fs.watch(server_path, function() {

@@ -4,7 +4,6 @@ var getopt = require('node-getopt');
 var mineos = require('./mineos');
 var fs = require('fs-extra');
 
-
 function read_ini(filepath) {
     var ini = require('ini');
     try {

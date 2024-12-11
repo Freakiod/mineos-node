@@ -1,6 +1,7 @@
 var async = require('async');
 var auth = exports;
 
+
 auth.authenticate_shadow = function(user, plaintext, callback) {
   var hash = require('sha512crypt-node');
   var fs = require('fs-extra');

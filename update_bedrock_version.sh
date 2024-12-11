@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 DownloadURL='https://minecraft.azureedge.net/bin-linux/'
 ServerVersions=""
 

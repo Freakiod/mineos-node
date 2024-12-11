@@ -1,6 +1,7 @@
 #!/bin/bash
 # Reset MineOS git repository to current master
 
+
 LOG="/var/log/mineos.log"
 
 if [[ $EUID -ne 0 ]]; then

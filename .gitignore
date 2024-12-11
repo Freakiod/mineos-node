@@ -2,6 +2,7 @@
 custom.conf
 mineos.auth.log
 
+
 # Logs
 logs
 *.log

@@ -8,6 +8,7 @@ var logging = require('winston');
 var mineos = exports;
 const java = require('./java.js');
 
+
 mineos.DIRS = {
   'servers': 'servers',
   'backup': 'backup',

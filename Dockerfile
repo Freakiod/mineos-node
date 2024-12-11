@@ -1,5 +1,6 @@
 FROM joshklassen/mineos:base
 
+
 #download mineos from github
 RUN mkdir /usr/games/minecraft \
   && cd /usr/games/minecraft \

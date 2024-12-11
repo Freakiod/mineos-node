@@ -60,5 +60,6 @@ services:
 volumes:
   mineos_data:
 
+
 networks:
   mineos:

@@ -1,5 +1,6 @@
 var logging = require('winston');
 
+
 var profile_manifests = {};
 
 var normalizedPath = require("path").join(__dirname, "profiles.d");

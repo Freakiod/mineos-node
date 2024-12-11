@@ -3,6 +3,7 @@ REPOSITORY_NAME := joshua-klassen/
 IMAGE_NAME := mineos
 TAG := :latest
 
+
 .PHONY: getcommitid
 all: build
 

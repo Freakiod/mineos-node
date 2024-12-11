@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # PROMPT FOR WEBUI USER PASSWORD
 echo -n "Type in \`$USER\` password for webui: "
 read -s UIPW

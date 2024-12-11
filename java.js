@@ -17,7 +17,6 @@ async function usedJavaVersion(sc, callback){
   }catch(e){
     callback(null, `Error accessing location '${value}'`);
   }
-
 }
 
 module.exports = {usedJavaVersion};

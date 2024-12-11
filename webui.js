@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+
 var mineos = require('./mineos');
 var server = require('./server');
 var async = require('async');

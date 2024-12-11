@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+
 var getopt = require('node-getopt');
 var mineos = require('./mineos');
 

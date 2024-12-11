@@ -2,6 +2,7 @@
 Description=Stop MineOS-controlled minecraft games at shutdown
 After=network.target
 
+
 [Service]
 User=root
 WorkingDirectory=/usr/games/minecraft

@@ -2,6 +2,7 @@
 # Generate SSL certificate
 # Note: daemons using certificate need to be restarted for changes to take effect
 
+
 fatal() {
     echo "fatal: $@" 1>&2
     exit 1
