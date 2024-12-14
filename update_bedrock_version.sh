@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 DownloadURL='https://minecraft.azureedge.net/bin-linux/'
 ServerVersions=""
 
@@ -70,6 +69,8 @@ exports.profile = {
 }
 
 EOM
+
+supervisorctl restart mineos
 
 echo "Done updating"
 
