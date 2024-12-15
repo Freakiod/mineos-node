@@ -152,10 +152,22 @@ server.backend = function (base_dir, socket_emitter, user_config) {
     }
 
     function track(sn) {
+      logging.warn("1self.servers={0}".format(self.servers));
+      logging.warn("1self.servers.length={0}".format(self.servers.length));
+      logging.warn("1sn={0}".format(sn));
+      logging.warn("1self.servers[sn]={0}".format(self.servers[sn]));
       self.servers[sn] = null;
+      logging.warn("2self.servers={0}".format(self.servers));
+      logging.warn("2self.servers.length={0}".format(self.servers.length));
+      logging.warn("2sn={0}".format(sn));
+      logging.warn("2self.servers[sn]={0}".format(self.servers[sn]));
       //if new server_container() isn't instant, double broadcast might trigger this if/then twice
       //setting to null is immediate and prevents double execution
       self.servers[sn] = new server_container(sn, user_config, self.front_end);
+      logging.warn("3self.servers={0}".format(self.servers));
+      logging.warn("3self.servers.length={0}".format(self.servers.length));
+      logging.warn("3sn={0}".format(sn));
+      logging.warn("3self.servers[sn]={0}".format(self.servers[sn]));
       self.front_end.emit('track_server', sn);
     }
 
