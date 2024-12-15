@@ -1,5 +1,5 @@
 [program:mineos]
-command=/usr/bin/node webui.js
+command=/usr/bin/node inspect webui.js
 directory=/usr/games/minecraft
 environment=HOME=/root
 user=root
