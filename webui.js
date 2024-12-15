@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-
 var mineos = require('./mineos');
 var server = require('./server');
 var async = require('async');
@@ -286,7 +285,7 @@ mineos.dependencies(function(err, binaries) {
     }, function(err, ssl) {
       if (err) {
         console.error('Could not locate required SSL files ' + keyfile +
-	              ' and/or ' + certfile + ', aborting server start.');
+                  ' and/or ' + certfile + ', aborting server start.');
         process.exit(3);
       } else {
         var https = require('https');
@@ -318,7 +317,7 @@ mineos.dependencies(function(err, binaries) {
 
 process.on('uncaughtExceptionMonitor', function(err) {
   
-  // Monitor but allow unhandled excaptions to fall through
+  // Monitor but allow unhandled exceptions to fall through
   console.error(`Uncaught Exception: ${err}`);
   console.error(err.stack);
   process.exit(1);

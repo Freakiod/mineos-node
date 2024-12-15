@@ -1,4 +1,5 @@
 var mineos = require('./mineos');
+var profileManager = require('./profiles');
 var async = require('async');
 var path = require('path');
 var events = require('events');
@@ -247,7 +248,7 @@ server.backend = function (base_dir, socket_emitter, user_config) {
       var profiles = [];
 
       try {
-        SOURCES = require('./profiles.js')['profile_manifests'];
+        SOURCES = profileManager.get_profile_manifests();
       } catch (e) {
         logging.error('Unable to parse profiles.js--no profiles loaded!');
         logging.error(e);
