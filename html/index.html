@@ -102,7 +102,8 @@
                         <!-- START Dropdown Menu -->
                         <div class="dropdown-menu" role="menu">
                             <footer>
-                                <a href="https://github.com/joshua-klassen/mineos-node/commit/{{ git_commit }}">git commit:
+                                <a href="https://github.com/joshua-klassen/mineos-node/commit/{{ git_commit }}">git
+                                    commit:
                                     {{ git_commit }}</a><br>
                                 <a ng-click="host_command('refresh_server_list')" class="text pointer"><span
                                         class="icon icone-globe"></span> {{ 'REFRESH_SERVER_LIST' | translate }}</a><br>
@@ -870,7 +871,8 @@
                                                     <figure class="stats summary stacked">
                                                         <div class="icon circle"
                                                             ng-class="{green: servers[current].heartbeat.up, red: servers[current].heartbeat.up == false}">
-                                                            <span class="icone-ok"></span></div>
+                                                            <span class="icone-ok"></span>
+                                                        </div>
                                                         <figcaption>
                                                             <h4>{{ servers[current].heartbeat.up ? 'UP' : 'DOWN'
                                                                 }}<small translate="SERVER_STATUS"></small></h4>
